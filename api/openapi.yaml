@@ -9,18 +9,11 @@ paths:
       summary: List all pets
       tags: [pets]
       responses:
-        "200":
-          description: A list of pets
-  /pets/{petId}:
+        "200": { description: ok }
+  /unicorns:
     get:
-      operationId: showPetById
-      summary: Info for a specific pet
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          schema:
-            type: string
+      operationId: listUnicorns
+      summary: GIT-ADDED unicorns endpoint
+      tags: [unicorns]
       responses:
-        "200":
-          description: Expected response to a valid request
+        "200": { description: ok }
