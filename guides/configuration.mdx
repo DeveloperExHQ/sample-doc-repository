@@ -1,0 +1,31 @@
+# Configuration
+
+Configure the DevHQ client for your environment.
+
+## Environment variables
+
+```bash
+DEVHQ_API_KEY=sk_live_xxx
+DEVHQ_ENVIRONMENT=production   # or "sandbox"
+DEVHQ_TIMEOUT=30000
+```
+
+## Client options
+
+```js
+import { DevHQ } from "@devhq/sdk";
+
+const client = new DevHQ({
+  apiKey: process.env.DEVHQ_API_KEY,
+  environment: "sandbox",
+  timeout: 30000,
+  retries: 3,
+});
+```
+
+## Environments
+
+| Environment | Base URL |
+|---|---|
+| `sandbox` | `https://sandbox-api.devhq.io` |
+| `production` | `https://api.devhq.io` |

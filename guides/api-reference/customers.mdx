@@ -1,0 +1,40 @@
+# Customers API
+
+Manage customer profiles and payment methods.
+
+## Create a customer
+
+`POST /v1/customers`
+
+```json
+{
+  "email": "user@example.com",
+  "name": "Jane Doe",
+  "metadata": { "user_id": "usr_123" }
+}
+```
+
+**Response:** `201 Created`
+
+```json
+{
+  "id": "cus_xxx",
+  "email": "user@example.com",
+  "name": "Jane Doe",
+  "created": 1700000000
+}
+```
+
+## Attach a payment method
+
+`POST /v1/customers/{id}/payment_methods`
+
+## List customers
+
+`GET /v1/customers`
+
+Query params: `limit`, `starting_after`, `email`
+
+## Delete a customer
+
+`DELETE /v1/customers/{id}` — returns `{ "deleted": true }`

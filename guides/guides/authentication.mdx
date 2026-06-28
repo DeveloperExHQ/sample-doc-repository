@@ -1,0 +1,35 @@
+# Authentication
+
+All API requests require a valid API key.
+
+## API Keys
+
+Generate your API key from the DevHQ dashboard under **Settings → API Keys**.
+
+```bash
+curl -H "Authorization: Bearer sk_live_xxx" https://api.devhq.io/v1/charges
+```
+
+## SDK Authentication
+
+```js
+const client = new DevHQ({ apiKey: process.env.DEVHQ_API_KEY });
+```
+
+## OAuth 2.0
+
+For partner integrations, use OAuth 2.0:
+
+```
+GET https://api.devhq.io/oauth/authorize
+  ?client_id=CLIENT_ID
+  &redirect_uri=REDIRECT_URI
+  &response_type=code
+  &scope=charges:read charges:write
+```
+
+## Security best practices
+
+- Store keys in environment variables, never in source code.
+- Rotate keys quarterly.
+- Use the minimal scope required.

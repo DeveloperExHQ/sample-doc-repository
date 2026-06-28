@@ -1,0 +1,31 @@
+# Changelog
+
+Release notes for the DevHQ API.
+
+## v2.3.0 — 2024-11-01
+
+### Added
+- Batch charge endpoint (`POST /v1/charges/batch`) for up to 100 charges per request.
+- Webhook retry with exponential backoff (max 72 h).
+
+### Fixed
+- Race condition in partial-capture flow that could double-capture.
+
+---
+
+## v2.2.0 — 2024-09-15
+
+### Added
+- OAuth 2.0 partner authentication.
+- `idempotency_key` header for all mutating endpoints.
+
+### Changed
+- Error response shape now includes `param` field for validation errors.
+
+---
+
+## v2.1.0 — 2024-07-01
+
+### Added
+- Refunds API (`POST /v1/refunds`).
+- Test-mode simulation tokens (`tok_declined`, `tok_insufficient_funds`).
