@@ -1,0 +1,31 @@
+# Webhooks API
+
+Manage webhook endpoints programmatically.
+
+## Create an endpoint
+
+`POST /v1/webhooks`
+
+```json
+{
+  "url": "https://yoursite.com/webhook",
+  "events": ["charge.succeeded", "charge.failed", "refund.created"],
+  "secret": "whsec_xxx"
+}
+```
+
+## List endpoints
+
+`GET /v1/webhooks`
+
+## Update an endpoint
+
+`PUT /v1/webhooks/{id}`
+
+## Delete an endpoint
+
+`DELETE /v1/webhooks/{id}`
+
+## List webhook events
+
+`GET /v1/webhooks/{id}/events?limit=20`

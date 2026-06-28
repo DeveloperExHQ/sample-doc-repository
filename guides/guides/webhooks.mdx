@@ -1,0 +1,42 @@
+# Webhooks
+
+Receive real-time event notifications.
+
+## Register an endpoint
+
+From the Dashboard → **Webhooks → Add endpoint**, enter your HTTPS URL and select events.
+
+## Event structure
+
+```json
+{
+  "id": "evt_xxx",
+  "type": "charge.succeeded",
+  "created": 1700000000,
+  "data": {
+    "object": { "id": "ch_xxx", "amount": 2000, "currency": "usd" }
+  }
+}
+```
+
+## Verify signatures
+
+```js
+import crypto from "crypto";
+
+function verifyWebhook(rawBody, signature, secret) {
+  const expected = crypto
+    .createHmac("sha256", secret)
+    .update(rawBody)
+    .digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
+}
+```
+
+## Event types
+
+| Event | Description |
+|---|---|
+| `charge.succeeded` | Payment captured |
+| `charge.failed` | Payment declined |
+| `refund.created` | Refund initiated |

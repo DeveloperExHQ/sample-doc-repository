@@ -1,0 +1,42 @@
+# Payments API
+
+Manage charges and captures.
+
+## Create a charge
+
+`POST /v1/charges`
+
+```json
+{
+  "amount": 2000,
+  "currency": "usd",
+  "source": "tok_visa",
+  "description": "Order #1234"
+}
+```
+
+**Response:** `201 Created`
+
+```json
+{
+  "id": "ch_xxx",
+  "amount": 2000,
+  "currency": "usd",
+  "status": "succeeded",
+  "created": 1700000000
+}
+```
+
+## List charges
+
+`GET /v1/charges`
+
+Query params: `limit`, `starting_after`, `status`, `created[gte]`, `created[lte]`
+
+## Capture a charge
+
+`POST /v1/charges/{id}/capture`
+
+## Retrieve a charge
+
+`GET /v1/charges/{id}`

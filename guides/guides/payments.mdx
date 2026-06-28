@@ -1,0 +1,46 @@
+# Payments
+
+Process one-time and recurring payments.
+
+## Create a charge
+
+```js
+const charge = await client.charges.create({
+  amount: 2000,        // in cents
+  currency: "usd",
+  source: "tok_visa",  // test token
+  description: "Order #1234",
+});
+```
+
+## Capture later
+
+```js
+// Authorize only
+const auth = await client.charges.create({
+  amount: 5000,
+  currency: "usd",
+  source: "tok_visa",
+  capture: false,
+});
+
+// Capture when ready
+await client.charges.capture(auth.id);
+```
+
+## Refunds
+
+```js
+const refund = await client.refunds.create({
+  charge: charge.id,
+  amount: 1000,  // partial refund
+});
+```
+
+## Test cards
+
+| Number | Result |
+|---|---|
+| `4242 4242 4242 4242` | Success |
+| `4000 0000 0000 0002` | Declined |
+| `4000 0000 0000 9995` | Insufficient funds |

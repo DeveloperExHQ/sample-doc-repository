@@ -1,0 +1,37 @@
+# Error Codes
+
+All API errors follow a consistent format.
+
+## Error response
+
+```json
+{
+  "error": {
+    "code": "card_declined",
+    "message": "Your card was declined.",
+    "type": "card_error",
+    "param": "source"
+  }
+}
+```
+
+## Error types
+
+| Type | Description |
+|---|---|
+| `card_error` | Card-specific error (declined, expired) |
+| `validation_error` | Request body failed validation |
+| `rate_limit_error` | Too many requests |
+| `authentication_error` | Invalid API key |
+| `api_error` | Internal server error |
+
+## Common codes
+
+| Code | HTTP | Description |
+|---|---|---|
+| `card_declined` | 402 | Card was declined |
+| `expired_card` | 402 | Card has expired |
+| `invalid_cvc` | 402 | CVC is invalid |
+| `insufficient_funds` | 402 | Insufficient funds |
+| `rate_limit_exceeded` | 429 | Slow down requests |
+| `invalid_api_key` | 401 | API key not recognized |
