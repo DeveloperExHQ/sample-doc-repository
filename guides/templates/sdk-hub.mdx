@@ -1,0 +1,61 @@
+# SDK Hub
+
+Official client libraries for every major language.
+
+<Callout type="note">
+All SDKs are open-source and MIT licensed. Report issues on
+[GitHub](https://github.com/yourorg).
+</Callout>
+
+## Installation
+
+<CodeGroup>
+```bash Node.js
+npm install @yourproduct/sdk
+```
+```bash Python
+pip install yourproduct-sdk
+```
+```bash Go
+go get github.com/yourorg/sdk-go
+```
+```bash Ruby
+gem install yourproduct-sdk
+```
+</CodeGroup>
+
+## Configuration
+
+<Tabs>
+<Tab label="Node.js">
+```javascript
+import { Client } from '@yourproduct/sdk'
+const client = new Client({ apiKey: 'YOUR_KEY', region: 'us-east-1' })
+```
+</Tab>
+<Tab label="Python">
+```python
+from yourproduct import Client
+client = Client(api_key='YOUR_KEY', region='us-east-1')
+```
+</Tab>
+<Tab label="Go">
+```go
+import sdk "github.com/yourorg/sdk-go"
+client := sdk.New(sdk.Config{APIKey: "YOUR_KEY"})
+```
+</Tab>
+</Tabs>
+
+## SDK versions
+
+<Accordion>
+<AccordionItem title="Node.js — changelog">
+**v3.1.0** — Added streaming support.
+**v3.0.0** — Migrated to ESM-first bundle.
+</AccordionItem>
+<AccordionItem title="Python — changelog">
+**v2.4.0** — Async/await support via `asyncio`.
+**v2.0.0** — Dropped Python 3.7 support.
+</AccordionItem>
+</Accordion>

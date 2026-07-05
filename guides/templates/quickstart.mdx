@@ -1,0 +1,46 @@
+# Quickstart
+
+<Callout type="tip">
+You can be up and running in under 5 minutes.
+</Callout>
+
+<Steps>
+<Step>
+## Install the SDK
+
+<CodeGroup>
+```bash npm
+npm install @yourproduct/sdk
+```
+```bash yarn
+yarn add @yourproduct/sdk
+```
+```bash pip
+pip install yourproduct-sdk
+```
+</CodeGroup>
+</Step>
+
+<Step>
+## Initialize the client
+
+```javascript
+import { Client } from '@yourproduct/sdk'
+
+const client = new Client({ apiKey: process.env.API_KEY })
+```
+</Step>
+
+<Step>
+## Make your first request
+
+```javascript
+const result = await client.resources.list()
+console.log(result)
+```
+</Step>
+</Steps>
+
+<Callout type="success">
+You're all set! Continue to the [API Reference](/api-reference) to explore all endpoints.
+</Callout>

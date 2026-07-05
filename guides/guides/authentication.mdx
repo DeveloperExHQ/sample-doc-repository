@@ -1,35 +1,58 @@
 # Authentication
 
-All API requests require a valid API key.
+All AcmePay API requests are authenticated with API keys. This guide explains how to obtain, use, and rotate your keys securely.
 
-## API Keys
+<Callout type="warning" title="Keep your secret key safe">
+Secret keys grant full API access. Store them only in environment variables or a secrets manager — never commit them to source control.
+</Callout>
 
-Generate your API key from the DevHQ dashboard under **Settings → API Keys**.
+<Steps>
+<Step title="Generate an API key">
+In the AcmePay Dashboard, go to **Settings → API Keys** and click **Create key**.
+
+You receive two keys:
+- `pk_test_...` — publishable (safe for client-side use in test mode)
+- `sk_test_...` — secret (server-side only; never expose this)
+</Step>
+
+<Step title="Authenticate your requests">
+Pass your secret key as a Bearer token in the `Authorization` header.
+
+<CodeGroup>
+```bash
+curl -H "Authorization: Bearer sk_test_..." \
+  https://api.acmepay.dev/v1/charges
+```
+
+```javascript
+const client = new AcmePay({ apiKey: process.env.ACMEPAY_SECRET_KEY })
+const charges = await client.charges.list()
+```
+
+```python
+client = acmepay.Client(api_key=os.environ['ACMEPAY_SECRET_KEY'])
+charges = client.charges.list()
+```
+</CodeGroup>
+</Step>
+
+<Step title="Switch to live mode">
+When ready for production, replace your test keys with live keys (`sk_live_...`).
 
 ```bash
-curl -H "Authorization: Bearer sk_live_xxx" https://api.devhq.io/v1/charges
+export ACMEPAY_SECRET_KEY=sk_live_...
 ```
+</Step>
+</Steps>
 
-## SDK Authentication
-
-```js
-const client = new DevHQ({ apiKey: process.env.DEVHQ_API_KEY });
-```
-
-## OAuth 2.0
-
-For partner integrations, use OAuth 2.0:
-
-```
-GET https://api.devhq.io/oauth/authorize
-  ?client_id=CLIENT_ID
-  &redirect_uri=REDIRECT_URI
-  &response_type=code
-  &scope=charges:read charges:write
-```
-
-## Security best practices
-
-- Store keys in environment variables, never in source code.
-- Rotate keys quarterly.
-- Use the minimal scope required.
+<Accordion>
+<AccordionItem title="How do I rotate a compromised key?">
+Go to **Settings → API Keys**, find the key, and click **Revoke**. Issue a new key and update your environment variables immediately.
+</AccordionItem>
+<AccordionItem title="Can I restrict a key to specific IP addresses?">
+Yes. In key settings, enable **IP allowlist** and add your server IP ranges.
+</AccordionItem>
+<AccordionItem title="What is OAuth 2.0 used for?">
+OAuth 2.0 is for third-party partner integrations. Use secret keys for direct server-to-server API access.
+</AccordionItem>
+</Accordion>
