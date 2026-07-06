@@ -1,0 +1,52 @@
+# Support Hub
+
+Find answers quickly, or reach our team directly.
+
+<Callout type="note">
+For urgent issues affecting production, email **support@example.com** with subject line
+`[URGENT]`.
+</Callout>
+
+## Frequently Asked Questions
+
+<Accordion>
+<AccordionItem title="Why is my API key not working?">
+Ensure you copied the full key including the `sk_` prefix. Keys are
+environment-specific — a test key will not work in production.
+</AccordionItem>
+<AccordionItem title="How do I rotate an API key?">
+Navigate to **Settings → API Keys**, click **Rotate**, and update your environment
+variables within 24 hours. Old keys stay active for a 24-hour grace period.
+</AccordionItem>
+<AccordionItem title="What are the rate limits?">
+Starter: 60 req/min. Growth: 600 req/min. Contact sales for higher limits.
+</AccordionItem>
+<AccordionItem title="How do I enable webhooks?">
+Go to **Settings → Webhooks**, add your endpoint URL, and select the events to subscribe
+to. We retry failed deliveries up to 5 times with exponential back-off.
+</AccordionItem>
+</Accordion>
+
+## Troubleshooting
+
+### 401 Unauthorized
+
+Check that the `Authorization` header is present and uses the `Bearer` scheme.
+
+### 429 Rate Limited
+
+Implement exponential back-off. The `Retry-After` header indicates how many
+seconds to wait.
+
+### 500 Internal Server Error
+
+Check [status.example.com](https://status.example.com) for active incidents. If the
+incident is not listed, contact support.
+
+## Contact
+
+| Channel    | Response time |
+|------------|---------------|
+| Email      | < 24 h        |
+| Live chat  | < 2 h (business hours) |
+| Community  | Community-driven |

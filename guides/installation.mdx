@@ -1,3 +1,64 @@
 # Installation
 
-**Edited in DevHQ (platform side) for F17 live-verify.**
+Install the AcmePay SDK in your project.
+
+<Callout type="warning" title="Version requirements">
+AcmePay requires Node.js 18+, Python 3.9+, or Go 1.21+.
+</Callout>
+
+<Steps>
+<Step title="Choose your language">
+Pick the SDK for your stack.
+
+<CodeGroup>
+```bash
+npm install @acmepay/node
+```
+
+```bash
+pip install acmepay
+```
+
+```bash
+go get github.com/acmepay/acmepay-go
+```
+</CodeGroup>
+</Step>
+
+<Step title="Set your API key">
+Store your secret key in an environment variable — never in source code.
+
+```bash
+export ACMEPAY_SECRET_KEY=sk_test_...
+```
+</Step>
+
+<Step title="Verify the installation">
+Import the SDK and confirm it loads without errors.
+
+<CodeGroup>
+```javascript
+import AcmePay from '@acmepay/node'
+console.log(AcmePay.VERSION)
+```
+
+```python
+import acmepay
+print(acmepay.__version__)
+```
+
+```go
+fmt.Println(acmepay.Version)
+```
+</CodeGroup>
+</Step>
+</Steps>
+
+<Accordion>
+<AccordionItem title="Troubleshooting: Module not found">
+Run `npm install` again and check you are on Node.js 18+: `node --version`.
+</AccordionItem>
+<AccordionItem title="Troubleshooting: SSL errors">
+Upgrade your CA certificates or set `NODE_EXTRA_CA_CERTS` to your corporate root CA.
+</AccordionItem>
+</Accordion>
