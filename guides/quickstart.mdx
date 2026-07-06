@@ -1,3 +1,45 @@
 # Quickstart
 
-**Edited in Git (polish-p1 gate 1783277439).** Get started with the API.
+AcmePay gives you a single, unified API to accept payments. This guide gets you from zero to your first charge in under five minutes.
+
+<Callout type="tip" title="Test mode">
+Use test-mode API keys (`pk_test_*`) so that no real money moves while you explore the API.
+</Callout>
+
+<Steps>
+<Step title="Install the SDK">
+Install the AcmePay SDK for your preferred language.
+
+<CodeGroup>
+```bash [bash]
+npm install @acmepay/node
+```
+```bash [bash]
+pip install acmepay
+```
+```bash [bash]
+go get github.com/acmepay/acmepay-go
+```
+</CodeGroup>
+</Step>
+
+<Step title="Create your first charge">
+Send a POST request to the charges endpoint.
+
+```javascript
+const charge = await client.charges.create({
+  amount: 2000,
+  currency: 'usd',
+  source: 'tok_visa',
+  description: 'Order #1001',
+})
+console.log(charge.id)
+```
+</Step>
+</Steps>
+
+<Accordion>
+<AccordionItem title="Need help?">
+Contact support at support@acmepay.dev or visit the API Reference.
+</AccordionItem>
+</Accordion>
