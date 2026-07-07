@@ -1,0 +1,37 @@
+# API Reference
+
+The DevHQ REST API is organized around resource-based URLs.
+
+## Base URL
+
+```
+https://api.devhq.io/v1
+```
+
+## Authentication
+
+Pass your API key as a Bearer token:
+
+```bash
+curl https://api.devhq.io/v1/charges \
+  -H "Authorization: Bearer sk_live_xxx"
+```
+
+## Request format
+
+- Body: `application/json`
+- Dates: ISO 8601 (`2024-01-15T10:30:00Z`)
+- Amounts: integers in smallest currency unit (cents for USD)
+
+## Response format
+
+All responses are JSON. Successful responses return the resource object.
+Errors return `{ "error": { "code", "message", "type" } }`.
+
+## Pagination
+
+List endpoints use cursor-based pagination:
+
+```
+GET /v1/charges?limit=20&starting_after=ch_xxx
+```
